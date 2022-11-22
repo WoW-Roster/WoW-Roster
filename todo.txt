@@ -6,6 +6,6 @@
 2. wybór bosów z aktualnie dostępnych
 - wybór graczy
 - wyświetlanie ilości ról
-- pokazanie braku bufów klasowych
+- pokazanie braku bufów klasowych (pod nazwą bosa x lub v, hover i pokazuje czego nie masz)
 - listy osób na bosie i osób dostępnych
 - zliczanie vaulta
