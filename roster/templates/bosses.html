@@ -1,0 +1,14 @@
+{% block content %}
+    <div class="bosses">
+        {% for i in list %}
+            <div class="{{ i }}">
+                <h2>   
+                    <p> {{ i }} </p> 
+                    <a> Tank: </a>
+                    <a> Helers: </a>
+                    <a> DPS: </a>
+                </h2>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
