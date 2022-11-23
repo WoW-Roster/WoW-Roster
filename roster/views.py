@@ -5,4 +5,5 @@ def bosses(request):
     data = bossesFile.read()
     list = data.split('\n')
     print(list)
+    bossesFile.close()
     return render(request, 'bosses.html', {'list': list})
