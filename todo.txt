@@ -1,0 +1,11 @@
+1. dodawanie ludzi (wyszukiwanie osoby z serwera i realma, pobranie klasy i wybór roli), 
+ - usuwanie, 
+ - zmiana roli, 
+ - podgląd listy dodanych graczy
+ 
+2. wybór bosów z aktualnie dostępnych
+- wybór graczy
+- wyświetlanie ilości ról
+- pokazanie braku bufów klasowych (pod nazwą bosa x lub v, hover i pokazuje czego nie masz)
+- listy osób na bosie i osób dostępnych
+- zliczanie vaulta
