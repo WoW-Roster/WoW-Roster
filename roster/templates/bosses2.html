@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div class="bosses">
+        <!-- {% for i in list %}
+            <div class="{{ i }}">
+                <h2>   
+                    <p> {{ i }} <input type="checkbox" id="{{ i }}" name="boss" value="{{ i }}"> </p>
+                    <a> Tank: </a>
+                    <a> Helers: </a>
+                    <a> DPS: </a>
+                </h2>
+            </div>
+        {% endfor %} -->
+        <script>
+            let data = sessionStorage.getItem("bosses_name");
+            alert(data);
+            const Array = data.split(',')
+            // boss can not have ',' in name 
+            for(let i = 0; i < Array.length; i++){
+                document.write(Array[i] + "<br>");
+            }
+
+            const checkInputs = () => {
+                inputs.forEach((input) => {
+                    checkbox.checked = sessionStorage.some((item) => item.name === input.value);
+                })
+            }
+        </script>
+    </div>
+{% endblock %}
