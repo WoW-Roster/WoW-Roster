@@ -7,9 +7,54 @@
 </head>
 
 <body>
-    {% for character in characters %}
-        {{ character.name }} {{ character.role }} </br>
+    {% for character_data in data %}
+    <div id="{{ character_data.character.name }}">
+    {{ character_data.character.name }} {{ character_data.character.game_class }}
+    <select class="role" name="role" onchange="change_role('{{ character_data.character.name }}', '{{ character_data.character.server }}', '{{ character_data.character.realm }}')">
+        {% for role in character_data.available_roles %}
+        <option value="{{ role }}" {% if role == character_data.character.role %} selected {% endif %}>{{ role }}</option>
+        {% endfor %}
+    </select>
+    <button
+        onclick="delete_character('{{ character_data.character.name }}', '{{ character_data.character.server }}', '{{ character_data.character.realm }}')">Delete</button>
+    </br>
+    </div>
     {% endfor %}
 </body>
+<script>
+    async function delete_character(character_name, server, realm) {
+        url = window.location.origin + "/characters/delete/"
+        data = {"character_name": character_name , "server": server, "realm": realm}
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+            body: JSON.stringify(data) 
+        });
+        if (response.status == 200){
+            document.getElementById(character_name).remove();
+        }
+    }
+
+    async function change_role(character_name, server, realm) {
+            url = window.location.origin + "/characters/change_role/"
+            var character_div = document.getElementById(character_name);
+            var new_role = character_div.getElementsByClassName("role")[0]
+            var value = new_role.value;
+
+            data = { "character_name": character_name, "server": server, "realm": realm, "role": value}
+            console.log(data)
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+                body: JSON.stringify(data)
+            });
+        }
+</script>
 
 </html>
