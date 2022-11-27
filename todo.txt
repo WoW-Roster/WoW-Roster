@@ -9,3 +9,4 @@
 - pokazanie braku bufów klasowych (pod nazwą bosa x lub v, hover i pokazuje czego nie masz)
 - listy osób na bosie i osób dostępnych
 - zliczanie vaulta
+

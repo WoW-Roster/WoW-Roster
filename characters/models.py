@@ -8,3 +8,5 @@ class Character(models.Model):
     role = models.CharField(max_length=6)
     realm = models.CharField(max_length=40)
     server = models.CharField(max_length=2)
+    def __str__(self) -> str:
+        return f"{self.name}-{self.role}"

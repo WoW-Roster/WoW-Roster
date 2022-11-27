@@ -1,30 +1,17 @@
-{% extends 'blog/base.html' %}
+{% extends 'index.html' %}
 {% block content %}
     <div class="bosses">
-        <!-- {% for i in list %}
-            <div class="{{ i }}">
-                <h2>   
-                    <p> {{ i }} <input type="checkbox" id="{{ i }}" name="boss" value="{{ i }}"> </p>
-                    <a> Tank: </a>
-                    <a> Helers: </a>
-                    <a> DPS: </a>
-                </h2>
-            </div>
-        {% endfor %} -->
-        <script>
-            let data = sessionStorage.getItem("bosses_name");
-            alert(data);
-            const Array = data.split(',')
-            // boss can not have ',' in name 
-            for(let i = 0; i < Array.length; i++){
-                document.write(Array[i] + "<br>");
-            }
+        {% for boss in object_list %}
+        <h2>{{ boss.name }} <a href="./boss_update/{{ boss.id }}/"> Roster </a> </h2>
+        <h4>{% for player in boss.players.all|dictsortreversed:"role" %}
+                {{ player.name }} - {{ player.role }} </br>
+            {% endfor %} </h4>
 
-            const checkInputs = () => {
-                inputs.forEach((input) => {
-                    checkbox.checked = sessionStorage.some((item) => item.name === input.value);
-                })
-            }
-        </script>
+            <p> Tanks: {{ boss.tank_count}} </p>
+            <p> Healers: {{ boss.healer_count }} </p>
+            <p> DPS: {{ boss.dps_count }} </p>
+            <p> People: {{ boss.players_count}} </p>
+
+        {% endfor %}   
     </div>
 {% endblock %}
