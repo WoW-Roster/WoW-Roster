@@ -2,11 +2,16 @@
 {% block content %}
     <div class="bosses">
         {% for boss in object_list %}
-        <h2>{{ boss.name }} </h2>
-        <h4>{% for player in boss.players.all %}
-                {{ player.name }}
-            {% endfor %} </h4></br>
-        {% endfor %} 
+        <h2>{{ boss.name }} <a href="./boss_update/{{ boss.id }}/"> Roster </a> </h2>
+        <h4>{% for player in boss.players.all|dictsortreversed:"role" %}
+                {{ player.name }} - {{ player.role }} </br>
+            {% endfor %} </h4>
+
+            <p> Tanks: {{ boss.tank_count}} </p>
+            <p> Healers: {{ boss.healer_count }} </p>
+            <p> DPS: {{ boss.dps_count }} </p>
+            <p> People: {{ boss.players_count}} </p>
+
+        {% endfor %}   
     </div>
-    {{ CharacterListView }}
 {% endblock %}
