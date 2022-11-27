@@ -1,17 +1,14 @@
-{% extends 'blog/base.html' %}
+{% extends 'index.html' %}
 {% block content %}
     <div class="bosses">
         {% for i in list %}
             <div class="{{ i }}">
                 <h2>   
                     <p> {{ i }} <input type="checkbox" id="{{ i }}" name="boss" value="{{ i }}"> </p>
-                    <a> Tank: </a>
-                    <a> Helers: </a>
-                    <a> DPS: </a>
                 </h2>
             </div>
         {% endfor %}
-        <input type="button" id="button" onclick="location.href=`./Bosses2`;" value="Submit">
+        <input type="button" id="button" onclick="location.href=`./players_selection`;" value="Submit">
         <script>
             const button = document.querySelector('#button');
             button.addEventListener('click', (event) => {
