@@ -1,0 +1,58 @@
+[
+  {
+    "model": "roster.boss",
+    "pk": 1,
+    "fields": {
+      "name": "Eranog"
+    }
+  },
+  {
+    "model": "roster.boss",
+    "pk": 2,
+    "fields": {
+      "name": "Terros"
+    }
+  },
+  {
+    "model": "roster.boss",
+    "pk": 3,
+    "fields": {
+      "name": "The Primal Council"
+    }
+  },
+  {
+    "model": "roster.boss",
+    "pk": 4,
+    "fields": {
+      "name": "Sennarth the Cold Breath"
+    }
+  },
+  {
+    "model": "roster.boss",
+    "pk": 5,
+    "fields": {
+      "name": "Dathea Ascended"
+    }
+  },
+  {
+    "model": "roster.boss",
+    "pk": 6,
+    "fields": {
+      "name": "Kurog Grimtotem"
+    }
+  },
+  {
+    "model": "roster.boss",
+    "pk": 7,
+    "fields": {
+      "name": "Broodkeeper Diurna"
+    }
+  },
+  {
+    "model": "roster.boss",
+    "pk": 8,
+    "fields": {
+      "name": "Raszageth the Storm-Eater"
+    }
+  }
+]

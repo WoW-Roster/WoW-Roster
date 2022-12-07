@@ -3,9 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
     <body>
         {% block content %}
         {% endblock %}
     </body>
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
 </html>

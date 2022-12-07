@@ -1,10 +1,8 @@
-{% extends 'index.html' %}
 {% block content %}
 
-<form action="." method="post">
+<form action="{% url 'boss_update' boss.id %}" method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
+    {{ form.as_p }}
+    <input type="submit" hx-post="{% url 'boss_update' boss.id %}"  value="Submit">
 </form>
-
 {% endblock %}
