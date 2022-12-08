@@ -1,8 +1,9 @@
 {% extends 'index.html' %}
 {% block content %}
-    <div class="bosses">
+    <div id="roster">
         {% for boss in object_list %}
-        <h2>{{ boss.name }} <a href="./boss_update/{{ boss.id }}/"> Roster </a> </h2>
+        <div class="boss">
+        <div hx-get="{% url 'boss_update' boss.id %}" hx-trigger="load"> </div>
         <h4>{% for player in boss.players.all|dictsortreversed:"role" %}
                 {{ player.name }} - {{ player.role }} </br>
             {% endfor %} </h4>
@@ -11,7 +12,7 @@
             <p> Healers: {{ boss.healer_count }} </p>
             <p> DPS: {{ boss.dps_count }} </p>
             <p> People: {{ boss.players_count}} </p>
-
+        </div>
         {% endfor %}   
     </div>
 {% endblock %}
