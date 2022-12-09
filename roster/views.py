@@ -16,15 +16,35 @@ class BossListView(ListView):
         queryset = queryset.annotate(
             players_count=Count("players"),
             tank_count=Count("players", filter=Q(players__role=Character.ROLES.TANK)),
-            healer_count=Count("players", filter=Q(players__role=Character.ROLES.HEALER)),
+            healer_count=Count(
+                "players", filter=Q(players__role=Character.ROLES.HEALER)
+            ),
             dps_count=Count("players", filter=Q(players__role=Character.ROLES.DPS)),
-            bloodlust_buff=Count("players", filter=Q(players__game_class=Character.CLASSES.MAGE) | Q(players__game_class=Character.CLASSES.HUNTER) | Q(players__game_class=Character.CLASSES.SHAMAN) | Q(players__game_class=Character.CLASSES.EVOKER)),
-            attack_power_buff=Count("players", filter=Q(players__game_class=Character.CLASSES.WARRIOR)),
-            intellect_buff=Count("players", filter=Q(players__game_class=Character.CLASSES.MAGE)),
-            stamina_buff=Count("players", filter=Q(players__game_class=Character.CLASSES.PRIEST)),
-            magic_damage_buff=Count("players", filter=Q(players__game_class=Character.CLASSES.DEMON_HUNTER)),
-            physical_damage_buff=Count("players", filter=Q(players__game_class=Character.CLASSES.MONK)),
-            devo_aura=Count("players", filter=Q(players__game_class=Character.CLASSES.PALADIN)),
+            bloodlust_buff=Count(
+                "players",
+                filter=Q(players__game_class=Character.CLASSES.MAGE)
+                | Q(players__game_class=Character.CLASSES.HUNTER)
+                | Q(players__game_class=Character.CLASSES.SHAMAN)
+                | Q(players__game_class=Character.CLASSES.EVOKER),
+            ),
+            attack_power_buff=Count(
+                "players", filter=Q(players__game_class=Character.CLASSES.WARRIOR)
+            ),
+            intellect_buff=Count(
+                "players", filter=Q(players__game_class=Character.CLASSES.MAGE)
+            ),
+            stamina_buff=Count(
+                "players", filter=Q(players__game_class=Character.CLASSES.PRIEST)
+            ),
+            magic_damage_buff=Count(
+                "players", filter=Q(players__game_class=Character.CLASSES.DEMON_HUNTER)
+            ),
+            physical_damage_buff=Count(
+                "players", filter=Q(players__game_class=Character.CLASSES.MONK)
+            ),
+            devo_aura=Count(
+                "players", filter=Q(players__game_class=Character.CLASSES.PALADIN)
+            ),
         )
         return queryset
 
