@@ -1,0 +1,31 @@
+{% load utils %}
+
+<header class="mb-5 pb-3">
+    <div>
+        <h3 class="float-md-start mb-0">WICKED</h3>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link fw-bold py-1 px-0 {% is_active "home_view" %}"
+               aria-current="page"
+               href="{% url "home_view" %}">Home</a>
+            <a class="nav-link fw-bold py-1 px-0 {% is_active "roster:boss_list_view" %}"
+               href="{% url "roster:boss_list_view" %}">Roster</a>
+            <a class="nav-link fw-bold py-1 px-0 dropdown-toggle {% is_active "characters:add_character" levels=1 %}"
+               href="#" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+                Players
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item {% is_active "characters:add_character" %}"
+                       href="{% url "characters:add_character" %}">Add</a></li>
+                <li>
+                    <a class="dropdown-item {% is_active "characters:list_characters" %}"
+                       href="{% url "characters:list_characters" %}">List</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Trials <span style="color:red">(WIP)</span></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

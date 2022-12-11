@@ -1,8 +1,13 @@
-{% block content %}
+{% extends "index.html" %}
+{% load django_bootstrap5 %}
+{% block title %}{{ boss.name }} - update{% endblock title %}
 
-<form action="{% url 'boss_update' boss.id %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" hx-post="{% url 'boss_update' boss.id %}"  value="Submit">
-</form>
-{% endblock %}
+{% bootstrap_messages %}
+{% block content %}
+    <form action="{% url 'roster:boss_update' boss.id %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" hx-post="{% url 'roster:boss_update' boss.id %}"
+               value="Submit">
+    </form>
+{% endblock content %}

@@ -1,0 +1,104 @@
+{% extends 'index.html' %}
+{% block title %}Roster{% endblock title %}
+{% block content %}
+    <div id="roster" class="card roster-card">
+        <ul class="nav nav-masthead justify-content-center float-md-end "
+            id="bosses-tabs" role="tablist">
+            {% for boss_name in boss_names %}
+                {% with boss_display_name=boss_name boss_name=boss_name.lower|slugify %}
+                    <li class="fw-bold py-2 px-2">
+                        <a class="nav-link" id="{{ boss_name }}-tab"
+                           data-bs-toggle="tab"
+                           data-bs-target="#{{ boss_name }}-tab-pane" type="button"
+                           role="tab"
+                           aria-controls="{{ boss_name }}-tab-pane"
+                           aria-selected="false">{{ boss_display_name }}</a>
+                    </li>
+                {% endwith %}
+            {% endfor %}
+        </ul>
+
+        <div class="tab-content" id="bosses-tabs-content">
+            {% for boss in object_list %}
+                {% with boss_name=boss.name.lower|slugify %}
+                    <div class="tab-pane fade" id="{{ boss_name }}-tab-pane"
+                         role="tabpanel" aria-labelledby="{{ boss_name }}-tab"
+                         tabindex="0">
+                        <div class="card-body">
+                            <a class="btn btn-light"
+                               href="{% url "roster:boss_update" boss.pk %}">Edit</a>
+                            <h4>Players:</h4>
+                            <hr>
+                            <div hx-get="{% url 'roster:boss_update' boss.id %}"
+                                 hx-trigger="load"></div>
+                            <h4>
+                                {% for player in boss.players.all|dictsortreversed:"role" %}
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            {% with game_class=player.game_class.lower|slugify %}
+                                                <span class="{{ game_class }}">{{ player.name }}</span>
+                                            {% endwith %}
+                                        </div>
+                                        <div class="col-md-3">
+                                            {{ player.role }}
+                                        </div>
+                                    </div>
+                                {% endfor %} </h4>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">Tanks:</div>
+                                <div class="col-md-3">Healers:</div>
+                                <div class="col-md-3">DPS:</div>
+                                <div class="col-md-3">Total:</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">{{ boss.tank_count }}</div>
+                                <div class="col-md-3">{{ boss.healer_count }}</div>
+                                <div class="col-md-3">{{ boss.dps_count }}</div>
+                                <div class="col-md-3">{{ boss.players_count }}</div>
+                            </div>
+
+
+                            <hr>
+                            <h4>Missing buffs</h4>
+                            <div class="row">
+                                <div class="col">Bloodlust</div>
+                                <div class="col">Attack Power</div>
+                                <div class="col">Intellect</div>
+                                <div class="col">Stamina</div>
+                                <div class="col">Magic Dmg</div>
+                                <div class="col">Physical Dmg</div>
+                                <div class="col">Devo Aura</div>
+                            </div>
+                            <div class="row">
+                                <div class="col">{% if boss.bloodlust_buff != 0 %}
+                                    <i class="bi bi-check" style="font-size: 2rem; color: green;"></i>{% else %}
+                                    <i class="bi bi-x" style="font-size: 2rem; color: red;"></i>{% endif %}</div>
+                                <div class="col">{% if boss.attack_power_buff != 0 %}
+                                    <i class="bi bi-check" style="font-size: 2rem; color: green;"></i>{% else %}
+                                    <i class="bi bi-x" style="font-size: 2rem; color: red;"></i>{% endif %}</div>
+                                <div class="col">{% if boss.intellect_buff != 0 %}
+                                    <i class="bi bi-check" style="font-size: 2rem; color: green;"></i>{% else %}
+                                    <i class="bi bi-x" style="font-size: 2rem; color: red;"></i>{% endif %}</div>
+                                <div class="col">{% if boss.stamina_buff != 0 %}
+                                    <i class="bi bi-check" style="font-size: 2rem; color: green;"></i>{% else %}
+                                    <i class="bi bi-x" style="font-size: 2rem; color: red;"></i>{% endif %}</div>
+                                <div class="col">{% if boss.magic_damage_buff != 0 %}
+                                    <i class="bi bi-check" style="font-size: 2rem; color: green;"></i>{% else %}
+                                    <i class="bi bi-x" style="font-size: 2rem; color: red;"></i>{% endif %}</div>
+                                <div class="col">{% if boss.physical_damage_buff != 0 %}
+                                    <i class="bi bi-check" style="font-size: 2rem; color: green;"></i>{% else %}
+                                    <i class="bi bi-x" style="font-size: 2rem; color: red;"></i>{% endif %}</div>
+                                <div class="col">{% if boss.devo_aura != 0 %}
+                                    <i class="bi bi-check" style="font-size: 2rem; color: green;"></i>{% else %}
+                                    <i class="bi bi-x" style="font-size: 2rem; color: red;"></i>{% endif %}</div>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
